@@ -133,7 +133,7 @@ define mcollective::user(
     }
   }
 
-  if $securityprovider == 'ssl' {
+  if $_securityprovider == 'ssl' {
     $cert_path = "${homedir_real}/.mcollective.d/credentials/certs/${callerid}.pem"
     if $certificate {
       file { $cert_path:
@@ -163,7 +163,7 @@ define mcollective::user(
         mode   =>  '0444',
       }
     }
-
+    notify{"test":}
     mcollective::user::setting { "${username}:plugin.ssl_client_public":
       setting  => 'plugin.ssl_client_public',
       username => $username,
